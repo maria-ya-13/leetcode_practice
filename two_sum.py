@@ -1,5 +1,7 @@
 # https://leetcode.com/problems/two-sum/
 
+# how to use hash-map here? 
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:  
         for pos_num_1 in range(len(nums)):
