@@ -16,7 +16,7 @@ class Solution:
         mapped = {}
         for position, number in enumerate(nums):
             required = target - number
-            if required in mapped:
+            if required in mapped and mapped[required]!= position:
                 req_pos = mapped[required]
                 return [req_pos, position]
             mapped[number] = position
