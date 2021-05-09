@@ -4,8 +4,6 @@
 
 from collections import Counter
 class Solution:
-
-    
     def productExceptSelf(self, nums: List[int]) -> List[int]:
         def reduce(collection):
             red = 1
