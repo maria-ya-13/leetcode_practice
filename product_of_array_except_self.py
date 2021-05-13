@@ -1,33 +1,22 @@
 # https://leetcode.com/problems/product-of-array-except-self
 
-# time limit exceeded {-1: 24975, 1: 24994, -2: 12, 2: 18}
-
 from collections import Counter
-class Solution:
+class Solution:   
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        def reduce(collection):
+        def reduce(num_counter):
             red = 1
-            if 0 in collection:
-                return 0
-            for x in set(collection):
-                red *= x
-            
-            duplicate_counter = dict(Counter(collection))
-            for i in duplicate_counter:
-                if duplicate_counter[i] > 1:
-                    if i == -1 and duplicate_counter[i]%2 ==0:
-                        red*=i
-                        continue
-                    red*=i ** (duplicate_counter[i]-1)
-                
+            if 0 in num_counter:
+                if num_counter[0] > 0:
+                    return 0
+                num_counter.pop(0)        
+            for i in num_counter:
+                red*=i ** (num_counter[i])
             return red
         
-        
-        new_num = []        
-        for i in range(len(nums)):
-            nums_copy = nums.copy()
-            nums_copy.pop(i)
-            res = reduce(nums_copy)
-            new_num.append(res)
-                           
+        new_num = []  
+        num_counter = dict(Counter(nums))
+        for num in nums:
+            cur_num_counter = num_counter.copy()
+            cur_num_counter[num] -=1
+            new_num.append(reduce(cur_num_counter))                 
         return new_num
